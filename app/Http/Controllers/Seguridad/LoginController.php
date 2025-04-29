@@ -34,12 +34,12 @@ class LoginController extends Controller
                 $validator = Validator::make(
                     $request->all(),
                     [
-                        'usuarioAlias' => 'required',
-                        'usuarioPassword' => 'required'
+                        'usuarioEmail' => 'required',
+                        'password' => 'required'
                     ],
                     [
-                        'usuarioAlias.required' => 'El campo usuario es requerido.',
-                        'usuarioPassword.required' => 'El campo contraseña es requerido.'
+                        'usuarioEmail.required' => 'El campo usuario es requerido.',
+                        'password.required' => 'El campo contraseña es requerido.'
                     ]
                 );
                 if ($validator->fails()) {
@@ -47,14 +47,14 @@ class LoginController extends Controller
                     return response()->json(['success' => false, 'message' => $message, 'required' => true]);
                 }
 
-                $usuarioAlias    = $request->usuarioAlias;
-                $usuarioPassword = $request->usuarioPassword;
+                $usuarioEmail    = $request->usuarioEmail;
+                $password = $request->password;
                 $url             = "/seguridad/usuario/catalogo";
 
                 $bandera = true;
                 $mensajes = [];
                 $modeloUsuario = $this->modelUsuario;
-                $usuario       = $modeloUsuario->obtenerUsuario($usuarioAlias);
+                $usuario       = $modeloUsuario->obtenerUsuario($usuarioEmail);
 
                 if ($usuario) {
                     //Bloqueo
@@ -63,10 +63,10 @@ class LoginController extends Controller
                         $mensajes = "Usuario Bloqueado, Favor de Verificar";
                     } else if ($usuario->usuarioEstado == "Inactivo" || $usuario->usuarioEstado == "Desactivado") {
                         $bandera = false;
-                        $mensajes = "Usuario Inválido " . $usuarioAlias . ", Favor de Verificar";
+                        $mensajes = "Usuario Inválido " . $usuarioEmail . ", Favor de Verificar";
                     } else {
                         //Password
-                        if (md5($usuarioPassword) != $usuario->usuarioPassword) {
+                        if (md5($password) != $usuario->password) {
                             $bandera = false;
                             $mensajes = "Credenciales Invalidas, Favor de Verificar($usuario->usuarioIntentos)";
                         }
@@ -82,7 +82,7 @@ class LoginController extends Controller
 
                     return response()->json(['success' => true, 'message' => 'Excelente logueo con éxito.', 'url' => $url]);
                 } else {
-                    return response()->json(['success' => false, 'required' => true, 'message' => ['usuarioAlias' => [$mensajes]]]);
+                    return response()->json(['success' => false, 'required' => true, 'message' => ['usuarioEmail' => [$mensajes]]]);
                 }
             }
         }

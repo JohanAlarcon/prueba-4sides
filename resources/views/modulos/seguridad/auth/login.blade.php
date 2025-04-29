@@ -14,12 +14,12 @@
     <form id="formLogin" method="post" action="{{ route('login.acceso') }}" class="my-5">
         @csrf
         <label class="input-group mb-3">
-            <input id="usuarioAlias" type="text" class="form-control" name="usuarioAlias" required
+            <input id="usuarioEmail" type="email" class="form-control" name="usuarioEmail" required
                 autocomplete="off" autofocus placeholder="Usuario" aria-label="usuario" aria-describedby="usuario">
         </label>
         <label class="input-group mb-3">
             <input placeholder="Contraseña" aria-label="contraseña" aria-describedby="Contraseña" id="password"
-                type="password" class="form-control" name="usuarioPassword" required autocomplete="current-password">
+                type="password" class="form-control" name="password" required autocomplete="current-password">
         </label>
 
         <button type="submit" class="btn btn-dark w-100 mt-3">Iniciar</button>

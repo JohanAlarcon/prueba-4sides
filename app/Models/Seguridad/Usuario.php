@@ -37,9 +37,9 @@ class Usuario extends Model
         }
     }
 
-    public function obtenerUsuario($usuarioAlias)
+    public function obtenerUsuario($usuarioEmail)
     {
-        $usuario = $this->whereRaw("usuarioAlias = BINARY '" . $usuarioAlias . "'")->get()->first();
+        $usuario = $this->whereRaw("usuarioEmail = BINARY '" . $usuarioEmail . "'")->get()->first();
         return $usuario;
     }
 

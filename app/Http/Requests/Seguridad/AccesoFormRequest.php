@@ -22,16 +22,16 @@ class AccesoFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'usuarioAlias' => 'required',
-            'usuarioPassword' => 'required'
+            'usuarioEmail' => 'required',
+            'password' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
-            'usuarioAlias.required' => 'El campo usuario es requerido.',
-            'usuarioPassword.required' => 'El campo contraseña es requerido.'
+            'usuarioEmail.required' => 'El campo usuario es requerido.',
+            'password.required' => 'El campo contraseña es requerido.'
         ];
     }
 }
