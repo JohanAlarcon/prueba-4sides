@@ -44,8 +44,8 @@ $ cp .env.example .env
 # 5. Generar clave de aplicación
 $ php artisan key:generate
 
-# 6. Migraciones (añade remember_token & foto si no existen)
-$ php artisan migrate
+# 6. Migraciones 
+$ php artisan migrate:fresh --seed
 
 # 7. Enlace a storage para las fotos
 $ php artisan storage:link
