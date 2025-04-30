@@ -26,16 +26,19 @@
                         </a>
                     @else
                         <a href="{{ route('login') }}"
-                           class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                            Iniciar Sesión
+                           class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H3m12 0l-4-4m4 4l-4 4m9-4a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Iniciar Sesión</span>
                         </a>
 
-                        @if (Route::has('register'))
+                        {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}"
                                class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">
                                 Registrarse
                             </a>
-                        @endif
+                        @endif --}}
                     @endauth
                 </div>
                 @endif

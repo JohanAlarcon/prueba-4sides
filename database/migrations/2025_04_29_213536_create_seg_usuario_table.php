@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('usuarioPassword', 75)->nullable();
             $table->string('usuarioNombre', 100)->nullable();
             $table->string('usuarioEmail', 100)->nullable();
+            $table->string('foto', 255)->nullable();
             $table->enum('usuarioEstado', ['Activo', 'Inactivo'])->nullable();
             $table->char('usuarioConectado', 1)->nullable();
             $table->dateTime('usuarioUltimaConexión')->nullable();

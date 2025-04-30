@@ -22,11 +22,20 @@ class SegUsuario extends Authenticatable
         'usuarioEstado',
         'usuarioConectado',
         'usuarioUltimaConexion',
+        'usuarioUltimaConexión',
+        'foto',
     ];
 
     protected $hidden = [
         'usuarioPassword',
         'remember_token',
+    ];
+
+    protected $casts = [
+        // char(1)  → bool   ('S' / null)
+        'usuarioConectado'     => 'boolean',
+        // datetime → Carbon  (acceso tipo ->format(), diffForHumans(), etc.)
+        'usuarioUltimaConexión'=> 'datetime',
     ];
 
     public function getAuthPassword()
@@ -53,5 +62,16 @@ class SegUsuario extends Authenticatable
     public function getEmailAttribute()          // para otras features
     {
         return $this->usuarioEmail;
+    }
+
+    public function setUsuarioConectadoAttribute($value)
+    {
+        $this->attributes['usuarioConectado'] = $value ? 'S' : null;
+    }
+
+    /* Para que boolean cast funcione:  null→false, 'S'→true */
+    public function getUsuarioConectadoAttribute($value)
+    {
+        return $value === 'S';
     }
 }
